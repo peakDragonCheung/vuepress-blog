@@ -20,7 +20,7 @@ module.exports = {
       { text: 'Contact', 
         icon: 'reco-message',
         items: [
-          { text: 'GitHub', link: 'https://github.com/recoluan', icon: 'reco-github' }
+          { text: 'GitHub', link: 'https://github.com/peakDragonCheung', icon: 'reco-github' }
         ]
       }
     ],
@@ -45,18 +45,18 @@ module.exports = {
       }
     },
     friendLink: [
-      {
-        title: '午后南杂',
-        desc: 'Enjoy when you can, and endure when you must.',
-        email: '1156743527@qq.com',
-        link: 'https://www.recoluan.com'
-      },
-      {
-        title: 'vuepress-theme-reco',
-        desc: 'A simple and beautiful vuepress Blog & Doc theme.',
-        avatar: "https://vuepress-theme-reco.recoluan.com/icon_vuepress_reco.png",
-        link: 'https://vuepress-theme-reco.recoluan.com'
-      },
+      // {
+      //   title: '午后南杂',
+      //   desc: 'Enjoy when you can, and endure when you must.',
+      //   email: '1156743527@qq.com',
+      //   link: 'https://www.recoluan.com'
+      // },
+      // {
+      //   title: 'vuepress-theme-reco',
+      //   desc: 'A simple and beautiful vuepress Blog & Doc theme.',
+      //   avatar: "https://vuepress-theme-reco.recoluan.com/icon_vuepress_reco.png",
+      //   link: 'https://vuepress-theme-reco.recoluan.com'
+      // },
     ],
     logo: '/logo.jpg',
     // 搜索设置
@@ -67,13 +67,13 @@ module.exports = {
     // 最后更新时间
     lastUpdated: 'Last Updated',
     // 作者
-    author: 'reco_luan',
+    author: 'peakDragonCheung',
     // 作者头像
     authorAvatar: '/avatar.png',
     // 备案号
     record: 'xxxx',
     // 项目开始时间
-    startYear: '2017'
+    startYear: '2020'
     /**
      * 密钥 (if your blog is private)
      */
