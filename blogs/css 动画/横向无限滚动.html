@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+          .big-buyer-cooperative-wrap {
+        border: 1px solid #a1a4a6;
+    }
+    .cooperative-box {
+            overflow: hidden;
+            margin: 0 auto;
+            max-width: 1440px;
+            display: flex;
+        }
+    .cooperative-box:hover .anim-a {
+        animation-play-state: paused !important;
+    }
+    .cooperative-box:hover .anim-b {
+        animation-play-state: paused !important;
+    }
+
+    .flex-ani-box {
+                display: flex;
+                flex-wrap: nowrap;
+    }
+    .flex-ani-box.anim-a {
+                    animation: scrollRowA;
+                    animation-duration: 30s;
+                    animation-timing-function: linear;
+                    animation-iteration-count: infinite;
+                    
+                }
+                .flex-ani-box.anim-a .cooperative-item {
+                        border: 1px solid #aa11aa;
+                    }
+                .flex-ani-box.anim-b {
+                    animation: scrollRowB;
+                    animation-duration: 30s;
+                    animation-timing-function: linear;
+                    animation-iteration-count: infinite;
+                }
+                .cooperative-item {
+                    width: 200px;
+                    height: 150px;
+                    border: 1px solid #11a4a6;
+                    margin-right: 20px;
+                    flex-shrink: 0;
+                }
+@keyframes scrollRowA
+{   
+
+    0% {
+        transform:translate(0px);
+        opacity: 1;
+    }
+    49% {
+        transform:translate(-98%);
+        opacity: 1;
+    }
+    50% {
+        transform:translate(-100%);
+        opacity: 0;
+    }
+    51% {
+        transform:translate(98%);
+        opacity: 0;
+    }
+    52% {
+        transform:translate(96%);
+        opacity: 1;
+    }
+    100% {
+        transform:translate(0px);
+        opacity: 1;
+    }
+}
+@keyframes scrollRowB
+{
+
+    0% {
+        transform:translate(0px);
+        opacity: 1;
+    }
+    50% {
+        transform:translate(-100%);
+        opacity: 1;
+    }
+    51% {
+        transform:translate(-102%);
+        opacity: 1;
+    }
+    98% {
+        transform:translate(-196%);
+        opacity: 1;
+    }
+    99% {
+        transform:translate(-198%);
+        opacity: 0;
+    }
+    100% {
+        transform:translate(0px);
+        opacity: 0;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="big-buyer-cooperative-wrap">
+        <div class="cooperative-box">
+            <div>
+                <div class="flex-ani-box anim-a">
+                    <div class="cooperative-item">
+                    </div>
+                    <div class="cooperative-item">
+                    </div>
+                    <div class="cooperative-item">
+                    </div>
+                    <div class="cooperative-item">
+                    </div>
+                    <div class="cooperative-item">
+                    </div>
+                    <div class="cooperative-item">
+                    </div>
+                    <div class="cooperative-item">
+                    </div>
+                    <div class="cooperative-item">
+                    </div>
+                    <div class="cooperative-item">
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="flex-ani-box anim-b">
+                    <div class="cooperative-item">
+                    </div>
+                    <div class="cooperative-item">
+                    </div>
+                    <div class="cooperative-item">
+                    </div>
+                    <div class="cooperative-item">
+                    </div>
+                    <div class="cooperative-item">
+                    </div>
+                    <div class="cooperative-item">
+                    </div>
+                    <div class="cooperative-item">
+                    </div>
+                    <div class="cooperative-item">
+                    </div>
+                    <div class="cooperative-item">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
