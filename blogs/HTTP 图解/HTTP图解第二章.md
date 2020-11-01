@@ -14,7 +14,7 @@ categories:
 
 如下图：
 
-![客户端和服务端](http://localhost:2002/2.1.png "客户端和服务端")
+![客户端和服务端](https://www.zhanglongfeng.cn/file/HTTP/2.1.png "客户端和服务端")
 
 HTTP协议，在客户端和服务端，应用的时候 会有一些通用的请求格式，
 
@@ -99,10 +99,10 @@ CONNECT方法要求在与代理服务器通信时建立隧道，实现用隧道�
 
 如下图 响应头部:
 
-![响应头部](http://localhost:2002/2.2.png "响应头部")
+![响应头部](https://www.zhanglongfeng.cn/file/HTTP/2.2.png "响应头部")
 
 如下图 再次请求头部:
 
-![响应头部](http://localhost:2002/2.3.png "响应头部")
+![响应头部](https://www.zhanglongfeng.cn/file/HTTP/2.3.png "响应头部")
 
 

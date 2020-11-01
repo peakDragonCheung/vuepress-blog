@@ -45,7 +45,7 @@ HTTP协议，FTP协议，DNS 域名系统 等等，
 
 这四层的关系如下图
 
-![TCP/IP 图解](http://localhost:2002/1.1.png "TCP/IP 图解")
+![TCP/IP 图解](https://www.zhanglongfeng.cn/file/HTTP/1.1.png "TCP/IP 图解")
 
 清晰明了，每一层对应处理每一层的数据，而且每一层都无感自己到底是第几层，不用关心，分层架构，也是广泛的应用在我们的软件开发过程中，
 
