@@ -69,9 +69,9 @@ module.exports = {
     // 作者
     author: 'peakDragonCheung',
     // 作者头像
-    authorAvatar: '/avatar.png',
+    authorAvatar: '/git-head.jpeg',
     // 备案号
-    record: 'xxxx',
+    record: '皖ICP备19003321号',
     // 项目开始时间
     startYear: '2020'
     /**
