@@ -1,6 +1,6 @@
 ---
 title: 创建Vue 应用
-date: 2018-5-31
+date: 2018-05-31
 tags:
  - Vue2.0
 categories:
