@@ -105,7 +105,7 @@ echo Agent pid 71561;
 ## 第三步
 
 ```shell
-sh-add ~/.ssh/github
+ssh-add ~/.ssh/github
 
 Identity added: /Users/longfengzhang/.ssh/github (peakDragonCheung@github.com)
 ```
