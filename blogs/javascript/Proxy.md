@@ -89,11 +89,11 @@ console.log(proxy.name); // 何雅虹是猪
 target.age = 11;
 console.log(target.age) // 何雅虹是猪
 ```
-这里会拦截所有的获取操作,不管是是否先后赋值操作， 只要是获取值操作都会走这个拦截器， 这个和 es5 的 `defineProperty` 不一样, `defineProperty` 只能定义单个字段的 get set 操作。
+这里会拦截所有的获取操作,不管是是否先后赋值操作， 只要是获取值操作都会走这个拦截器， 这个和 es5 的 `defineProperty` 不一样, `defineProperty` 只能定义单个字段的 `get set` 操作。
 
-说一下如何触发这个get 的形式，ECMAScript 中获取对象中值的操作有许多， 如 proxy.propert proxy[propert] Object.create(proxy)[propert] 等操作，只要是获取值操作。
+说一下如何触发这个get 的形式，ECMAScript 中获取对象中值的操作有许多， 如 `proxy.propert proxy[propert]` `Object.create(proxy)[propert]` 等操作，只要是获取值操作。
 
-这里就不举例列举代码了。在这里是否有疑问，Vue 如何通过这个简单的 get 去收集依赖呢，如何判断获取的是哪个属性，就像上面的例子一样，获取 age 和 name 时都只会返回一个相同的字符串。肯定是不符合实际场景的，我们要根据不同的 key 返回不同的值。
+这里就不举例列举代码了。在这里是否有疑问，`Vue` 如何通过这个简单的 `get` 去收集依赖呢，如何判断获取的是哪个属性，就像上面的例子一样，获取 `age` 和 `name` 时都只会返回一个相同的字符串。肯定是不符合实际场景的，我们要根据不同的 `key` 返回不同的值。
 
 所有的捕获器都可以访问相应的参数,基于这些参数可以重建被捕获的原始行为。
 
@@ -229,7 +229,7 @@ console.log(target.age) // 何雅虹是猪
 
 ### 代理的问题和不足
 
-代理中的this，因为普通方法中的 `this` 为调用方法的对象。所以在代理对象中去调用方法的时候就会导致 `this` 指向的有问题。如下:
+代理中的`this`，因为普通方法中的 `this` 为调用方法的对象。所以在代理对象中去调用方法的时候就会导致 `this` 指向的有问题。如下:
 
 ```typescript
     const target = {
@@ -244,6 +244,6 @@ console.log(target.age) // 何雅虹是猪
     console.log(proxy.sayThis()); // true
     console.log(target.sayThis()); // false
 ```
-可见this 的指向会导致具体的对象判断出现问题。
+可见 `this` 的指向会导致具体的对象判断出现问题。
 
 代理的基本使用在这里就差不多，但是代理和反射的结合使用还是有很多的。可见 [Proxy和Reflect](https://zhanglongfeng.cn/) 文章查看更多反射方法 一共13种反射方法。
