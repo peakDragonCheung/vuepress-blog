@@ -1,13 +1,13 @@
 ---
 title: Proxy
-date: 2021-04-10
+date: 2021-04-13
 tags:
  - javascript
 categories:
- -  javascript
+ - javascript
 ---
 
-# Proxy
+# Proxy（代理）
 
 ## 概念 
 
@@ -95,3 +95,155 @@ console.log(target.age) // 何雅虹是猪
 
 这里就不举例列举代码了。在这里是否有疑问，Vue 如何通过这个简单的 get 去收集依赖呢，如何判断获取的是哪个属性，就像上面的例子一样，获取 age 和 name 时都只会返回一个相同的字符串。肯定是不符合实际场景的，我们要根据不同的 key 返回不同的值。
 
+所有的捕获器都可以访问相应的参数,基于这些参数可以重建被捕获的原始行为。
+
+如例子：
+
+```typescript
+    const target = {
+        name: '何雅虹'
+    };
+
+    const hander = {
+        get(trapTarget, property, receiver) {
+            console.log(trapTarget === target); // true
+            console.log(property); // name
+            console.log(receiver); // Proxy {name: "何雅虹"}
+            return target[property];
+        }
+    }
+
+    const proxy = new Proxy(target, hander);
+    console.log(proxy.name); // 何雅虹
+    console.log(target.name); // 何雅虹
+```
+
+像上面这样，可以让原始行为恢复正常，或者说代替了真正的原始行为的拦截器，`get` 方法，如果仅仅是原始行为的替代拦截器，可以用 `反射` 去替换，
+
+`Reflect` 是一个es6 新增的内置对象。 代理对象的处理对象中定义的原始行为的方法，在`Reflect`中都有相同的名字和函数签名。像上面的例子可以简化使用 反射去替换。
+
+```typescript
+    const target = {
+        name: '何雅虹'
+    };
+
+    const hander = {
+        get(trapTarget, proty, rectarget) {
+            return  Reflect.get(trapTarget, proty, rectarget)
+        }
+    }
+
+    const proxy = new Proxy(target, hander);
+    console.log(proxy.name); // 何雅虹
+    console.log(target.name); // 何雅虹
+
+```
+
+有了反射之后，我们就可以减少很多内置原始行为的代码，使用反射加以修饰增强 拦截器的功能。
+
+```typescript
+    const target = {
+        name: '何雅虹',
+        age: '18'
+    };
+
+    const hander = {
+        get(trapTarget, proty, rectarget) {
+                let preFix = '';
+                if(proty === 'name') {
+                    preFix = '天下最美的人是'
+                }
+            return  preFix + Reflect.get(trapTarget, proty, rectarget)
+        }
+    }
+
+    const proxy = new Proxy(target, hander);
+    console.log(proxy.name); // 天下最美的人是何雅虹
+    console.log(proxy.age); // 18
+
+```
+
+###  捕获器不变式
+
+以上的拦截修饰功能，必须遵守一个原则，那就是捕获器不变式，就是通过 es5 的方法进行定义的对象，限定的一些行为，就算是代理对象也不能违背，如下：
+
+
+```typescript
+    const target = {
+        name: '何雅红',
+        age: '18'
+    };
+    Object.defineProperty(target,'name', {
+        configurable: false,
+        writable: false,
+        value: '何雅红'
+    })
+    const hander = {
+    get(trapTarget, proty, rectarget) {
+            let preFix = '';
+            if(proty === 'name' && trapTarget[proty] === '何雅红') {
+                preFix = '天下最美的人是'
+            }
+        return  preFix + Reflect.get(trapTarget, proty, rectarget)
+    }
+    }
+
+    const proxy = new Proxy(target, hander);
+    console.log(proxy.name); // 
+    console.log(proxy.age); // 
+/*
+    Uncaught TypeError: 'get' on proxy: property 'name' is a read-only and non-configurable data property on the proxy target but the proxy did not return its actual value (expected '何雅红' but got '天下最美的人是何雅红')
+    at <anonymous>:21:19
+*/ 
+
+```
+
+如上无法使用代理违背 `defineProperty` 的配置。
+
+### 可撤销代理
+
+```typescript
+    const target = {
+        name: '何雅红',
+    };
+
+    const hander = {
+    get() {
+        return  '何雅红是猪'
+        }
+    }
+    const { proxy, revoke } = Proxy.revocable(target, hander);
+    console.log(proxy.name); // 何雅红是猪
+    console.log(target.name); // 何雅红
+
+    revoke();
+
+    console.log(proxy.name); // 
+    /*
+        VM423:1 Uncaught TypeError: Cannot perform 'get' on a proxy that has been revoked
+        at <anonymous>:1:7
+    */
+    console.log(target.name); // 何雅红
+
+```
+
+### 代理的问题和不足
+
+代理中的this，因为普通方法中的 `this` 为调用方法的对象。所以在代理对象中去调用方法的时候就会导致 `this` 指向的有问题。如下:
+
+```typescript
+    const target = {
+        sayThis() {
+            console.log(this === proxy)
+        }
+    };
+
+    const hander = {
+    }
+    const { proxy, revoke } = Proxy.revocable(target, hander);
+    console.log(proxy.sayThis()); // true
+    console.log(target.sayThis()); // false
+```
+可见this 的指向会导致具体的对象判断出现问题。
+
+代理的基本使用在这里就差不多，但是代理和反射的结合使用还是有很多的。可见 [Proxy和Reflect](https://zhanglongfeng.cn/) 文章查看更多反射方法 一共13种反射方法。

@@ -1,12 +1,13 @@
-const target = {
-    name: '何雅虹'
-};
+    const target = {
+        sayThis() {
+            console.log(this === proxy)
+        }
+    };
 
-const hander = {
-    get() {
-        return '何雅虹是猪'
+    const hander = {
+        
     }
-}
+    const { proxy, revoke } = Proxy.revocable(target, hander);
+    console.log(proxy.sayThis()); // true
+    console.log(target.sayThis()); // false
 
-const proxy = new Proxy(target, hander);
-console.log(proxy.name); // 何雅虹是猪
