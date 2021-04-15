@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .publish-btn {
+            width: 100vw;
+            height: 50vh;
+            border: 1px solid #3f89b5;
+            background-color: #e3ff7f;
+            margin: 0;
+            cursor: pointer;
+        }
+        .publish-btn__disabled {
+            background-color: #8BC34A;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <button class="J-pb publish-btn" >发布</button>
+</body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    const btn = document.querySelector('.J-pb');
+    btn.addEventListener('click', () => {
+        btn.disabled = true;
+        btn.classList.add('publish-btn__disabled');
+        btn.textContent = '正在发布，请稍后.....';
+        setTimeout(() => {
+            axios.get('http://127.0.0.1:3000/publish').then(res => {
+                if(res.status === 200 && res.data === 'ok') {
+                    alert('发布成功,请刷新博客页面!');
+                    btn.disabled = false;
+                    btn.classList.remove('publish-btn__disabled');
+                    btn.textContent = '发布';
+                } else {
+                    alert('发布失败,请去服务器查看报错!');
+                    btn.textContent = '发布失败';
+                }
+            }).catch(res => {
+                console.log('errpr', res)
+                alert('发布失败,请去服务器查看报错!');
+                btn.textContent = '发布失败';
+            })
+        }, 3000)
+        
+    })
+</script>
+</html>
