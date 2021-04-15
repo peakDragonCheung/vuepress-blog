@@ -40,7 +40,7 @@
         btn.classList.add('publish-btn__disabled');
         btn.textContent = '正在发布，请稍后.....';
         setTimeout(() => {
-            axios.get('http://106.55.159.191:3000/publish').then(res => {
+            axios.get('http://zhanglongfeng:3000/publish').then(res => {
                 if(res.status === 200 && res.data === 'ok') {
                     alert('发布成功,请刷新博客页面!');
                     btn.disabled = false;

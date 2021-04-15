@@ -15,7 +15,7 @@ app.use(async ctx => {
     const result = await publish();
     ctx.body = result;
   }
-  if(ctx.path !== '/' || ctx.path !== '/publish') {
+  if(ctx.path !== '/' && ctx.path !== '/publish') {
      ctx.body = '大佬别连我的服务器啊。。。。。。。。。';
   }
   
