@@ -7,7 +7,7 @@ categories:
  - javascript
 ---
 
-# Proxy（代理）
+# Proxy
 
 ## 概念 
 
