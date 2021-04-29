@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="./img/favicon.ico">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>龙峰发布系统</title>
+   <link type="text/css" href="css/index.css" rel="Stylesheet">
+</head>
+<body>
+    <div class="wrap">
+        <header class="wrap--header">
+           <img src="https://www.zhanglongfeng.cn/fileother/git-head.jpeg" width="48" /> <span class="header--text">龙峰发布系统</span>
+        </header>
+        <div class="wrap--body">
+            <nav class="slider-left J-left-listen">
+                <li class="J-list-item" data-type="upload">上传图片</li>
+                <li class="J-list-item" data-type="publish">重新发布blog</li>
+            </nav>
+            <div class="slider-right">
+                <div class="J-upload J-item-child item-child hidden">
+                    <input type="file" class="J-file-select"/>
+                    <div class="file-url--wrap">
+                        <div>此时上传的图片list</div>
+                        <div class="file-url--body J-success-wrap">
+                        </div>
+                    </div>
+                </div>
+                <div class="J-publish J-item-child item-child hidden">
+                    <button class="J-pb publish-btn" >发布</button>
+                </div>
+                <div class="J-item-child item-child">
+                    欢迎使用
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="./js/index.js">
+</script>
+</html>
